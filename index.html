@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>L'Argent — Restaurante & Bar Argentino · Parrilla en València</title>
+<meta name="description" content="L'Argent, restaurante y bar argentino en el Eixample de València. Parrilla argentina, empanadas caseras, provoleta y cortes a la brasa. Reservas en el 681 67 48 18." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Marcellus&family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --noche: #16110d;
+    --noche-prof: #0d0a08;
+    --noche-medio: #241a13;
+    --tierra: #3a2a1d;
+    --crema: #f4ead6;
+    --crema-suave: #e7d6ba;
+    --dorado: #d4a24e;
+    --dorado-claro: #e3b96e;
+    --brasa: #b03a1f;
+    --vino: #7a2230;
+    --celeste: #7fb2dd;
+    --texto: #f4ead6;
+    --texto-tenue: rgba(244, 234, 214, 0.72);
+    --negro: #080605;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--noche-prof);
+    color: var(--texto);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--dorado); color: var(--noche-prof); }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--noche-prof); }
+  ::-webkit-scrollbar-thumb { background: var(--tierra); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--dorado); }
+
+  h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 600; line-height: 1.15; }
+
+  /* ============ NAV ============ */
+  nav {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    padding: 1.4rem 3rem;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all .4s ease;
+    background: transparent;
+  }
+  nav.scrolled {
+    background: rgba(13, 10, 8, 0.92);
+    backdrop-filter: blur(12px);
+    padding: 0.9rem 3rem;
+    box-shadow: 0 2px 30px rgba(0,0,0,.5);
+  }
+  .logo { display: flex; flex-direction: column; align-items: center; gap: 5px; text-decoration: none; line-height: 1; }
+  .logo-emblem { display: block; width: 112px; height: 23px; }
+  .logo-img { display: block; height: 58px; width: auto; }
+  .logo-text { text-align: center; font-family: 'Cinzel', serif; letter-spacing: 2px; }
+  .hero h1 { font-family: 'Cinzel', serif; letter-spacing: 3px; }
+  .logo-mark {
+    width: 44px; height: 44px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--dorado);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--dorado);
+    background: rgba(212, 162, 78, .08);
+  }
+  .logo-text {
+    font-family: 'Marcellus', serif;
+    font-size: 1.5rem;
+    color: var(--crema);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .logo-text span {
+    color: var(--celeste);
+    font-size: 0.58rem;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--crema);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+    position: relative;
+    transition: color .3s;
+  }
+  .nav-links a:hover { color: var(--dorado); }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -6px; left: 0;
+    width: 0; height: 1px;
+    background: var(--dorado);
+    transition: width .3s;
+  }
+  .nav-links a:hover::after { width: 100%; }
+  .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .burger span { width: 26px; height: 2px; background: var(--crema); transition: .3s; }
+
+  .lang-switch {
+    background: transparent;
+    border: 1px solid rgba(244, 234, 214, 0.3);
+    color: var(--crema);
+    padding: 0.45rem 0.85rem;
+    border-radius: 50px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-left: 1.5rem;
+    transition: all .3s ease;
+  }
+  .lang-switch:hover { border-color: var(--dorado); }
+  .lang-opt { color: var(--texto-tenue); transition: color .3s; font-weight: 500; }
+  .lang-opt.active { color: var(--dorado); }
+  .lang-sep { color: rgba(244, 234, 214, 0.3); }
+
+  /* Status indicator */
+  .status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.55rem 1.3rem;
+    background: rgba(36, 26, 19, 0.55);
+    border: 1px solid rgba(244, 234, 214, 0.15);
+    border-radius: 50px;
+    margin: 2rem auto 0;
+    font-size: 0.82rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+    color: var(--crema);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    animation: fadeUp 1.2s 1.6s forwards;
+  }
+  .status-dot { width: 11px; height: 11px; border-radius: 50%; background: #888; position: relative; }
+  .status-dot::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: inherit;
+    opacity: 0.5;
+    animation: pulseStatus 2s ease-out infinite;
+  }
+  .status-open .status-dot { background: #4ade80; box-shadow: 0 0 12px rgba(74, 222, 128, 0.6); }
+  .status-closed .status-dot { background: #f87171; box-shadow: 0 0 12px rgba(248, 113, 113, 0.5); }
+  @keyframes pulseStatus { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(2.2); opacity: 0; } }
+
+  /* ============ HERO ============ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%; object-fit: cover; background: #0d0a08;
+    transform: scale(1.1);
+    z-index: 0;
+    will-change: transform;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      radial-gradient(ellipse at 50% 40%, rgba(13, 10, 8, .45), rgba(13, 10, 8, .82) 75%),
+      linear-gradient(180deg, rgba(13,10,8,.7) 0%, rgba(13,10,8,.35) 45%, rgba(13,10,8,.95) 100%);
+  }
+  .hero-content { text-align: center; z-index: 2; padding: 0 1.5rem; max-width: 960px; position: relative; }
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    color: var(--celeste);
+    margin-bottom: 1.8rem;
+    opacity: 0;
+    animation: fadeUp 1s .3s forwards;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after { content: '—'; margin: 0 0.7rem; color: rgba(127,178,221,.5); }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.6rem, 12vw, 8.5rem);
+    color: var(--crema);
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 0.95;
+    opacity: 0;
+    animation: fadeUp 1.2s .5s forwards;
+    text-shadow: 0 4px 40px rgba(0,0,0,.5);
+  }
+  .hero h1 .apos { color: var(--dorado); }
+  .hero-sub {
+    font-family: 'Marcellus', serif;
+    font-size: clamp(1rem, 2.2vw, 1.5rem);
+    color: var(--crema-suave);
+    margin-top: 1.2rem;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 1.2s .8s forwards;
+  }
+  .hero-sub .sep { color: var(--dorado); margin: 0 0.6rem; }
+  .hero-tagline {
+    font-size: 1.05rem;
+    color: var(--texto-tenue);
+    margin: 2.2rem auto 0;
+    max-width: 580px;
+    opacity: 0;
+    animation: fadeUp 1.2s 1.1s forwards;
+  }
+  .hero-buttons {
+    margin-top: 2.6rem;
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1.2s 1.4s forwards;
+  }
+  .btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    font-size: 0.82rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all .4s ease;
+    cursor: pointer;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+  }
+  .btn-primary { background: var(--dorado); color: var(--noche-prof); border: 1px solid var(--dorado); }
+  .btn-primary:hover { background: transparent; color: var(--dorado); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(212, 162, 78, .25); }
+  .btn-ghost { background: transparent; color: var(--crema); border: 1px solid rgba(244, 234, 214, .4); }
+  .btn-ghost:hover { border-color: var(--dorado); color: var(--dorado); transform: translateY(-3px); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--texto-tenue);
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    z-index: 2;
+    animation: bounce 2.5s infinite;
+  }
+  .scroll-hint::after { content: '↓'; display: block; margin-top: 8px; font-size: 1.2rem; }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(8px);} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
+
+  /* ============ SECCIONES GENERAL ============ */
+  section { padding: 4.5rem 2rem; position: relative; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-title { text-align: center; margin-bottom: 2.8rem; }
+  .section-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--celeste);
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .section-title h2 { font-size: clamp(2.5rem, 5vw, 4rem); color: var(--crema); }
+  .section-title h2 em { font-style: italic; color: var(--dorado); }
+  .divider { width: 60px; height: 1px; background: var(--dorado); margin: 1.5rem auto; }
+  .divider::before, .divider::after {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--dorado);
+    border-radius: 50%;
+    margin: -2px 10px;
+  }
+
+  /* ============ DESCRIPCIÓN ============ */
+  .descripcion { background: var(--noche); }
+  .desc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .desc-text p { color: var(--texto-tenue); margin-bottom: 1.3rem; font-size: 1.05rem; }
+  .desc-text p:first-of-type::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--dorado);
+    float: left;
+    line-height: 1;
+    margin-right: 8px;
+    margin-top: 4px;
+  }
+  .desc-image {
+    position: relative;
+    height: 500px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: url('https://img02.restaurantguru.com/cfb6-LArgent-Valencia-food.jpg') center/cover;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  }
+  .stats-row {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(244, 234, 214, .12);
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: var(--dorado);
+    font-weight: 600;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--texto-tenue);
+    margin-top: 0.5rem;
+  }
+
+  /* ============ UBICACIÓN Y HORARIOS ============ */
+  .ubicacion { background: var(--noche-prof); }
+  .ubi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .info-card {
+    background: rgba(58, 42, 29, .25);
+    border: 1px solid rgba(244, 234, 214, .08);
+    padding: 3rem;
+    border-radius: 4px;
+    transition: all .4s ease;
+  }
+  .info-card:hover { border-color: var(--dorado); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,.4); }
+  .info-card h3 { font-size: 2rem; color: var(--crema); margin-bottom: 1.5rem; }
+  .info-card h3 .icon { color: var(--dorado); margin-right: 0.6rem; }
+  .info-card p, .info-card a {
+    color: var(--texto-tenue);
+    text-decoration: none;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    display: block;
+    transition: color .3s;
+  }
+  .info-card a:hover { color: var(--dorado); }
+  .horario-lista { list-style: none; margin-top: 1rem; }
+  .horario-lista li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(244, 234, 214, .08);
+    font-size: 0.95rem;
+  }
+  .horario-lista li:last-child { border-bottom: none; }
+  .dia { color: var(--crema); font-weight: 500; text-transform: capitalize; }
+  .hora { color: var(--texto-tenue); font-size: 0.9rem; text-align: right; }
+  .cerrado { color: #c87a7a; font-style: italic; }
+  .hoy { background: rgba(212, 162, 78, .08); padding: 0.75rem 1rem; margin: 0 -1rem; border-radius: 4px; }
+  .hoy .dia::before { content: '● '; color: var(--dorado); }
+
+  .mapa-wrap {
+    margin-top: 4rem;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(244, 234, 214, .08);
+    box-shadow: 0 15px 50px rgba(0,0,0,.4);
+  }
+  .mapa-wrap iframe { width: 100%; height: 380px; border: none; filter: grayscale(0.3) brightness(0.85); }
+
+  /* ============ GALERÍA ============ */
+  .galeria { background: var(--noche); }
+  .gal-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 250px; gap: 1rem; grid-auto-flow: dense; }
+  .gal-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform .5s ease;
+    background-size: cover;
+    background-position: center;
+  }
+  .gal-item:hover { transform: scale(1.02); }
+  .gal-item::after {
+    content: none;
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    padding: 1.5rem;
+    color: var(--crema);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-style: italic;
+    background: linear-gradient(transparent, rgba(8, 6, 5, .92));
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all .4s ease;
+  }
+  .gal-item:hover::after { transform: translateY(0); opacity: 1; }
+  .gal-item.tall { grid-row: span 2; }
+  .gal-1 { background-image: url('assets/ig-1.jpg'); }
+  .gal-2 { background-image: url('assets/ig-2.jpg'); }
+  .gal-3 { background-image: url('assets/ig-3.jpg'); }
+  .gal-4 { background-image: url('assets/ig-4.jpg'); }
+  .gal-5 { background-image: url('assets/ig-5.jpg'); }
+  .gal-6 { background-image: url('assets/ig-6.jpg'); }
+  .gal-7 { background-image: url('assets/ig-7.jpg'); }
+  .gal-8 { background-image: url('assets/gal-8.jpg'); }
+  .gal-9 { background-image: url('assets/gal-9.jpg'); }
+
+  /* ============ CARTA ============ */
+  .carta { background: var(--noche-prof); position: relative; }
+  .carta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(212, 162, 78, .06), transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(176, 58, 31, .07), transparent 50%);
+    pointer-events: none;
+  }
+  .carta .container { position: relative; z-index: 1; }
+  .carta-cat { margin-bottom: 2.6rem; }
+  .cat-header { text-align: center; margin-bottom: 1.8rem; }
+  .cat-header h3 { font-size: 2.3rem; color: var(--crema); margin-bottom: 0.5rem; }
+  .cat-header h3 span { font-style: italic; color: var(--dorado); }
+  .cat-header p { color: var(--texto-tenue); font-style: italic; font-family: 'Playfair Display', serif; font-size: 1.1rem; }
+  .plato-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem 3rem; }
+  .plato-sub { grid-column: 1 / -1; font-family: 'Inter', sans-serif; font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--celeste); margin: 1.8rem 0 0.4rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(244,234,214,.12); }
+  .plato-grid .plato-sub:first-child { margin-top: 0; }
+  .carta-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.55rem; margin: 0 auto 3rem; max-width: 920px; }
+  .carta-tab { font-family: 'Inter', sans-serif; font-size: 0.74rem; letter-spacing: 1.4px; text-transform: uppercase; color: var(--texto-tenue); background: rgba(58,42,29,.3); border: 1px solid rgba(244,234,214,.14); padding: 0.55rem 1.1rem; border-radius: 50px; cursor: pointer; transition: all .3s ease; white-space: nowrap; }
+  .carta-tab:hover { border-color: var(--dorado); color: var(--crema); }
+  .carta-tab.active { background: var(--dorado); border-color: var(--dorado); color: var(--noche-prof); font-weight: 600; }
+  .carta-groups { display: flex; justify-content: center; gap: 0.6rem; margin: 0 auto 1.5rem; }
+  .carta-group { font-family: 'Playfair Display', serif; font-size: 1.15rem; letter-spacing: 2px; text-transform: uppercase; color: var(--crema); background: transparent; border: none; border-bottom: 2px solid transparent; padding: 0.35rem 1.1rem; cursor: pointer; transition: all .3s ease; }
+  .carta-group:hover { color: var(--dorado); }
+  .carta-group.active { color: var(--dorado); border-bottom-color: var(--dorado); }
+  @media (max-width: 600px) { .carta-tabs { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; margin-bottom: 2rem; padding-bottom: 0.6rem; } .carta-tab { flex: 0 0 auto; } }
+  .plato { display: flex; align-items: baseline; gap: 1rem; padding: 1rem 0; border-bottom: 1px dashed rgba(244, 234, 214, .15); }
+  .plato-info { flex: 1; }
+  .plato-nombre { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--crema); font-weight: 500; }
+  .plato-desc { font-size: 0.85rem; color: var(--texto-tenue); margin-top: 0.2rem; }
+  .plato-precio { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--dorado); font-weight: 600; white-space: nowrap; }
+  .destacado .plato-nombre::after { content: '★'; color: var(--dorado); margin-left: 8px; font-size: 0.8rem; }
+  .precio-pendiente { color: var(--texto-tenue); font-style: italic; font-size: 0.95rem; }
+  .carta-nota {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1.4rem;
+    background: rgba(58, 42, 29, .2);
+    border: 1px dashed rgba(212, 162, 78, .3);
+    border-radius: 4px;
+    color: var(--texto-tenue);
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+  }
+  .carta-nota a { color: var(--dorado); text-decoration: none; border-bottom: 1px solid var(--dorado); }
+
+  /* ============ CONTACTO ============ */
+  .contacto { background: var(--noche); }
+  .contacto-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3.2rem; align-items: center; }
+  .contacto-text h2 { font-size: clamp(2.5rem, 5vw, 4rem); color: var(--crema); margin-bottom: 1.5rem; }
+  .contacto-text h2 em { font-style: italic; color: var(--dorado); }
+  .contacto-text p { color: var(--texto-tenue); font-size: 1.1rem; margin-bottom: 2.5rem; max-width: 480px; }
+  .tel-grande {
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: var(--dorado);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--dorado);
+    transition: all .3s ease;
+  }
+  .tel-grande:hover { color: var(--crema); border-color: var(--crema); transform: translateX(8px); }
+  .tel-label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--texto-tenue);
+    margin-bottom: 0.5rem;
+    font-family: 'Inter', sans-serif;
+  }
+  .reserva-online {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.9rem 1.8rem;
+    background: var(--dorado);
+    color: var(--noche-prof);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 2px;
+    transition: all .3s ease;
+  }
+  .reserva-online:hover { background: transparent; color: var(--dorado); box-shadow: inset 0 0 0 1px var(--dorado); transform: translateY(-3px); }
+  .contacto-card { background: rgba(58, 42, 29, .3); border: 1px solid rgba(244, 234, 214, .1); padding: 3rem; border-radius: 4px; }
+  .contacto-card .item { padding: 1.2rem 0; border-bottom: 1px solid rgba(244, 234, 214, .08); }
+  .contacto-card .item:last-child { border-bottom: none; }
+  .contacto-card .item strong {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--dorado);
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+  }
+  .contacto-card .item a, .contacto-card .item span { color: var(--crema); text-decoration: none; font-size: 1rem; transition: color .3s; }
+  .contacto-card .item a:hover { color: var(--dorado); }
+
+  /* ============ FOOTER ============ */
+  footer { background: var(--negro); padding: 4rem 2rem 2rem; text-align: center; }
+  footer .logo { margin-bottom: 1.5rem; justify-content: center; }
+  .footer-links { display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; list-style: none; flex-wrap: wrap; }
+  .footer-links a {
+    color: var(--texto-tenue);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color .3s;
+  }
+  .footer-links a:hover { color: var(--dorado); }
+  .social-icons { display: flex; justify-content: center; gap: 1rem; margin: 1.5rem 0; }
+  .social-icons a {
+    width: 42px; height: 42px;
+    border: 1px solid rgba(244, 234, 214, .25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--crema);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all .3s ease;
+  }
+  .social-icons a:hover { background: var(--dorado); color: var(--noche-prof); border-color: var(--dorado); transform: translateY(-3px); }
+  .copy {
+    color: var(--texto-tenue);
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(244, 234, 214, .08);
+  }
+  .credit { margin-top: 0.6rem; font-size: 0.72rem; color: rgba(244,234,214,.45); }
+  .credit a { color: var(--celeste); text-decoration: none; }
+
+  /* ============ REVEAL ============ */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 1s ease, transform 1s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-left { transform: translateX(-40px); }
+  .reveal-left.visible { transform: translateX(0); }
+  .reveal-right { transform: translateX(40px); }
+  .reveal-right.visible { transform: translateX(0); }
+  .stagger > * { transition-delay: calc(var(--i, 0) * 100ms); }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    nav.scrolled { padding: 0.8rem 1.5rem; }
+    .logo-text { font-size: 1.3rem; letter-spacing: 3px; }
+    .nav-links {
+      position: fixed;
+      top: 0; right: -100%;
+      width: 80%; max-width: 320px; height: 100vh;
+      background: var(--noche-prof);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      gap: 2rem;
+      transition: right .4s ease;
+      box-shadow: -10px 0 40px rgba(0,0,0,.5);
+    }
+    .nav-links.open { right: 0; }
+    .nav-links a { font-size: 1rem; }
+    .burger { display: flex; z-index: 1001; }
+    .burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+    section { padding: 3.2rem 1.5rem; }
+    .section-title { margin-bottom: 2.2rem; }
+    .desc-grid, .ubi-grid, .contacto-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .gal-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; gap: 0.7rem; }
+    .gal-item.tall { grid-row: span 1; }
+    .gal-grid > .gal-item:last-child:nth-child(odd) { grid-column: span 2; }
+    .plato-grid { grid-template-columns: 1fr; gap: 0.3rem; }
+    .tel-grande { font-size: 2rem; }
+    .desc-image { height: 320px; }
+    .info-card { padding: 2rem 1.5rem; }
+    .contacto-card { padding: 2rem 1.5rem; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 0.7rem 1rem; }
+    nav.scrolled { padding: 0.55rem 1rem; }
+    .logo { gap: 0.5rem; }
+    .logo-mark { width: 38px; height: 38px; font-size: 1.05rem; }
+    .logo-emblem { width: 84px; height: 17px; }
+    .logo-img { height: 42px; }
+    .logo-text { font-size: 1.05rem; letter-spacing: 2px; }
+    .logo-text span { display: none; }
+    .lang-switch { padding: 0.35rem 0.7rem; font-size: 0.7rem; margin-left: 0; margin-right: 0.6rem; }
+    .hero { min-height: 100vh; min-height: 100svh; padding: 4rem 1rem 2rem; }
+    .hero-eyebrow { font-size: 0.62rem; letter-spacing: 3px; margin-bottom: 1rem; }
+    .hero h1 { font-size: clamp(2.8rem, 16vw, 4.5rem); letter-spacing: 1px; }
+    .hero-sub { font-size: 0.82rem; letter-spacing: 4px; margin-top: 0.8rem; }
+    .hero-tagline { font-size: 0.95rem; margin-top: 1.3rem; line-height: 1.55; }
+    .status-indicator { margin-top: 1.3rem; padding: 0.45rem 1rem; font-size: 0.75rem; }
+    .hero-buttons { margin-top: 1.6rem; gap: 0.7rem; flex-direction: column; align-items: center; }
+    .btn { padding: 0.85rem 2rem; font-size: 0.78rem; letter-spacing: 2px; width: 240px; text-align: center; }
+    section { padding: 2.4rem 1.1rem; }
+    .section-title { margin-bottom: 1.6rem; }
+    .section-title h2 { font-size: 2.1rem; }
+    .desc-grid { gap: 1.8rem; }
+    .desc-image { height: 230px; }
+    .desc-text p { font-size: 0.98rem; margin-bottom: 1rem; }
+    .desc-text p:first-of-type::first-letter { font-size: 2.8rem; }
+    .stats-row { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 1.5rem; padding-top: 1.5rem; }
+    .stat-num { font-size: 1.6rem; }
+    .stat-label { font-size: 0.58rem; letter-spacing: 1px; }
+    .ubi-grid { gap: 1.8rem; }
+    .info-card { padding: 1.5rem 1.3rem; }
+    .info-card h3 { font-size: 1.3rem; margin-bottom: 0.9rem; }
+    .info-card p, .info-card a { font-size: 0.92rem; }
+    .horario-lista .hora { font-size: 0.8rem; }
+    .mapa-wrap { margin-top: 2rem; }
+    .mapa-wrap iframe { height: 240px; }
+    .gal-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; gap: 0.5rem; }
+    .gal-item.tall { grid-row: span 1; }
+    .gal-grid > .gal-item:last-child:nth-child(odd) { grid-column: span 2; }
+    .gal-item::after { font-size: 0.92rem; padding: 0.7rem 0.8rem; opacity: 1; transform: translateY(0); background: linear-gradient(transparent 40%, rgba(8, 6, 5, .9)); }
+    .carta-cat { margin-bottom: 1.8rem; }
+    .cat-header { margin-bottom: 1.1rem; }
+    .carta-groups { gap: 0.2rem; margin-bottom: 1.1rem; }
+    .carta-group { font-size: 0.95rem; letter-spacing: 1px; padding: 0.3rem 0.7rem; }
+    .carta-tabs { gap: 0.4rem; }
+    .carta-tab { font-size: 0.7rem; padding: 0.45rem 0.85rem; }
+    .cat-header h3 { font-size: 1.8rem; }
+    .plato { padding: 0.75rem 0; gap: 0.7rem; }
+    .plato-nombre { font-size: 1.05rem; }
+    .plato-desc { font-size: 0.82rem; line-height: 1.4; }
+    .plato-precio { font-size: 1.1rem; }
+    .contacto-grid { gap: 2rem; }
+    .contacto-text p { font-size: 0.98rem; margin-bottom: 1.5rem; }
+    .tel-grande { font-size: 1.9rem; padding: 0.6rem 0; }
+    .contacto-card { padding: 1.6rem 1.3rem; }
+    footer { padding: 2.3rem 1.1rem 1.3rem; }
+    .footer-links { gap: 1rem; margin: 1.2rem 0; }
+  }
+  @media (max-width: 380px) {
+    .hero h1 { font-size: 2.6rem; }
+    .section-title h2 { font-size: 1.8rem; }
+    .tel-grande { font-size: 1.65rem; }
+    .btn { width: 100%; max-width: 240px; }
+    .gal-grid { grid-auto-rows: 130px; }
+  }
+  @media (hover: none) {
+    .info-card:hover, .gal-item:hover { transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    .hero-bg { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="logo" aria-label="L'Argent — Inicio">
+    <img src="assets/largent-logo-v2.png" class="logo-img" alt="L'Argent">
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#hero" data-i18n="nav.home">Inicio</a></li>
+    <li><a href="#galeria" data-i18n="nav.gallery">Galer&iacute;a</a></li>
+    <li><a href="#carta" data-i18n="nav.menu">Carta</a></li>
+    <li><a href="#contacto" data-i18n="nav.book">Reservas</a></li>
+  </ul>
+  <button class="lang-switch" id="langSwitch" aria-label="Cambiar idioma">
+    <span class="lang-opt active" data-lang="es">ES</span>
+    <span class="lang-sep">/</span>
+    <span class="lang-opt" data-lang="en">EN</span>
+  </button>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <video class="hero-bg" id="heroBg" autoplay muted loop playsinline preload="auto" poster="assets/ig-6.jpg"><source src="assets/hero-3.mp4" type="video/mp4"></video>
+  <div class="hero-content">
+    <p class="hero-eyebrow" data-i18n="hero.eyebrow">Parrilla Argentina · L'Eixample · València</p>
+    <h1>L<span class="apos">'</span>ARGENT</h1>
+    <p class="hero-sub" data-i18n-html="hero.sub">Restaurante <span class="sep">&amp;</span> Bar Argentino</p>
+    <p class="hero-tagline" data-i18n="hero.tagline">Auténtica parrilla argentina en el corazón de València. Carne a la brasa, empanadas caseras y el fuego como protagonista.</p>
+    <div class="status-indicator" id="statusIndicator">
+      <span class="status-dot"></span>
+      <span class="status-text" data-i18n-dyn="status">···</span>
+    </div>
+    <div class="hero-buttons">
+      <a href="tel:+34681674818" class="btn btn-primary" data-i18n="hero.cta1">Reservar mesa</a>
+      <a href="#carta" class="btn btn-ghost" data-i18n="hero.cta2">Ver la carta</a>
+    </div>
+  </div>
+</section>
+
+<!-- CARTA -->
+<section class="carta" id="carta">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="section-eyebrow" data-i18n="menu.eyebrow">Para disfrutar</span>
+      <h2 data-i18n-html="menu.title">Nuestra <em>carta</em></h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="carta-groups" id="cartaGroups"></div>
+    <div class="carta-tabs" id="cartaTabs"></div>
+
+    <!-- ENTRANTES ARGENTINOS -->
+    <div class="carta-cat reveal">
+      <div class="cat-header">
+        <h3>Entrantes <span>argentinos</span></h3>
+        <p>Empanadas, provoletas y achuras de tradición</p>
+      </div>
+      <div class="plato-grid">
+        <div class="plato-sub">Empanadas caseras</div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Criolla de ternera</div><div class="plato-desc">Carne cortada y especiada, la clásica</div></div><div class="plato-precio">3,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Criolla de ternera picante</div></div><div class="plato-precio">3,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Pollo</div></div><div class="plato-precio">3,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Humita</div><div class="plato-desc">Crema suave de maíz</div></div><div class="plato-precio">3,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Espinacas y queso</div></div><div class="plato-precio">3,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Jamón york y queso</div></div><div class="plato-precio">3,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Carne cortada a cuchillo</div></div><div class="plato-precio">4,20 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Caprese</div><div class="plato-desc">Queso y tomate</div></div><div class="plato-precio">4,20 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Asado y provolone</div></div><div class="plato-precio">4,20 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Cuatro quesos</div></div><div class="plato-precio">4,20 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Atún y tomate</div></div><div class="plato-precio">4,20 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Cheese bacon</div><div class="plato-desc">Queso y bacon</div></div><div class="plato-precio">4,20 €</div></div>
+
+        <div class="plato-sub">Provoletas</div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Provoleta al orégano</div><div class="plato-desc">Queso provolone a la parrilla con orégano</div></div><div class="plato-precio">9 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Provoleta con tomate</div><div class="plato-desc">Con tomate, perejil y ajo</div></div><div class="plato-precio">11 €</div></div>
+
+        <div class="plato-sub">Embutidos y casquería</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Chorizo argentino con chimichurri</div><div class="plato-desc">Embutido de cerdo 100%</div></div><div class="plato-precio">8 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Morcilla criolla argentina o vasca</div><div class="plato-desc">Morcilla dulce con chimichurri</div></div><div class="plato-precio">7,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Riñón de ternera</div></div><div class="plato-precio">13,90 €</div></div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Mollejas a la brasa</div><div class="plato-desc">Con limón</div></div><div class="plato-precio">18,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Chinchulines (sarajos)</div></div><div class="plato-precio">14,90 €</div></div>
+
+        <div class="plato-sub">Brochetas gourmet</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Brocheta de cerdo</div><div class="plato-desc">Bacon, ciruela, cebolla, tomate y guarnición (2 ud)</div></div><div class="plato-precio">18,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Brocheta de ternera</div><div class="plato-desc">Cebolla, calabacín, champiñones, pimientos y guarnición (2 ud)</div></div><div class="plato-precio">21,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Brocheta de gambones</div><div class="plato-desc">10 gambones grillados, cebolla, calabacín y pimientos</div></div><div class="plato-precio">22,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Brocheta de pollo</div><div class="plato-desc">Cebolla, calabacín, champiñones, pimientos y guarnición (2 ud)</div></div><div class="plato-precio">18,50 €</div></div>
+      </div>
+    </div>
+
+    <!-- ENTRANTES MEDITERRÁNEOS -->
+    <div class="carta-cat reveal">
+      <div class="cat-header">
+        <h3>Entrantes <span>mediterráneos</span></h3>
+        <p>Para picar, frituras, mar y brasa</p>
+      </div>
+      <div class="plato-grid">
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Pan en porción</div></div><div class="plato-precio">1,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Cacaos</div></div><div class="plato-precio">1,20 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Gildas</div><div class="plato-desc">Pincho de anchoas, olivas y piparras</div></div><div class="plato-precio">1,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Olivas</div></div><div class="plato-precio">2,30 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Patatas chips</div></div><div class="plato-precio">2,30 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Croquetas</div><div class="plato-desc">Jamón, pollo, bacalao, buey o boletus (ud)</div></div><div class="plato-precio">2,40 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Pan tostado con alioli y tomate</div></div><div class="plato-precio">5,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Esgarraet</div></div><div class="plato-precio">6,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Ensaladilla rusa</div></div><div class="plato-precio">6,20 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Morro de cerdo</div><div class="plato-desc">Frito y salado</div></div><div class="plato-precio">7,20 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Dados de queso en tempura</div><div class="plato-desc">Con salsa de arándanos</div></div><div class="plato-precio">7,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Patatas bravas</div><div class="plato-desc">Salsa brava, alioli y pimentón picante</div></div><div class="plato-precio">7 €</div></div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Patatas L'Argent</div><div class="plato-desc">Bacon, queso cheddar, ajo y perejil</div></div><div class="plato-precio">8,20 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Huevos rotos</div><div class="plato-desc">Con jamón serrano, pimientos y patatas</div></div><div class="plato-precio">9,20 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Boquerones fritos</div></div><div class="plato-precio">9,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Boquerones en vinagre</div><div class="plato-desc">9 unidades con pan y tomate</div></div><div class="plato-precio">9 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Puntillas (chipirón) a la romana</div></div><div class="plato-precio">10,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Anchoas en aceite</div><div class="plato-desc">Del Cantábrico, 9 unidades con pan y tomate</div></div><div class="plato-precio">12,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Calamares a la romana</div></div><div class="plato-precio">11,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Sepia a la plancha</div><div class="plato-desc">Con ajo, perejil y mayonesa</div></div><div class="plato-precio">16 €</div></div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Pulpo a la brasa</div><div class="plato-desc">Sobre patata soufflé, AOVE, pimentón dulce y escamas de sal</div></div><div class="plato-precio">19,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tabla de ibéricos</div><div class="plato-desc">Embutido ibérico y quesos variados</div></div><div class="plato-precio">23,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tabla marinera a la andaluza</div><div class="plato-desc">Calamares, chipirones, boquerones y gambas</div></div><div class="plato-precio">25,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Alcachofas en tempura</div></div><div class="plato-precio">8,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Queso camembert</div><div class="plato-desc">2 unidades</div></div><div class="plato-precio">9 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Callos</div></div><div class="plato-precio">8,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Torrezno con papas fritas</div></div><div class="plato-precio">8,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Torpedo de gambas</div><div class="plato-desc">4 unidades</div></div><div class="plato-precio">6 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Dados de bacalao en tempura</div></div><div class="plato-precio">9 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Palitos de berenjena en tempura</div></div><div class="plato-precio">6,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Mejillones al vapor</div></div><div class="plato-precio">9,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Vegetales en tempura con humus</div><div class="plato-desc">Boniato, calabacín, calabaza, brócoli y pimientos</div></div><div class="plato-precio">12,50 €</div></div>
+
+        <div class="plato-sub">BBQ</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Nachos tres salsas</div><div class="plato-desc">Salsa brava, salsa de yogur, guacamole, tomate y cebolla</div></div><div class="plato-precio">9,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Alitas de pollo</div><div class="plato-desc">Con salsa BBQ</div></div><div class="plato-precio">9,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Nuggets de pollo</div><div class="plato-desc">Con salsa BBQ o ketchup</div></div><div class="plato-precio">9,50 €</div></div>
+      </div>
+    </div>
+
+    <!-- CORTES ARGENTINOS -->
+    <div class="carta-cat reveal">
+      <div class="cat-header">
+        <h3>Cortes <span>argentinos</span></h3>
+        <p>Carne seleccionada a la brasa</p>
+      </div>
+      <div class="plato-grid">
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Asado de ternera</div><div class="plato-desc">Costilla selecta a la brasa con guarnición de patatas</div></div><div class="plato-precio">19,90 €</div></div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Vacío de ternera</div><div class="plato-desc">Corte de tradición a la brasa con patatas</div></div><div class="plato-precio">22,50 €</div></div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Entraña</div><div class="plato-desc">Pura pulpa de ternera, fibra tierna y sabrosa</div></div><div class="plato-precio">22,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Chuletón de ternera nacional (½ kg)</div><div class="plato-desc">Rubia gallega, con patatas fritas</div></div><div class="plato-precio">37 €</div></div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Entrecot argentino 100% Angus</div><div class="plato-desc">Lomo alto (450 g) de Angus argentino</div></div><div class="plato-precio">37,90 €</div></div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Bife de chorizo argentino 100% Angus</div><div class="plato-desc">Lomo bajo (450 g) con patatas</div></div><div class="plato-precio">35,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Paletilla de cordero</div><div class="plato-desc">Lechal a la brasa con patatas a la provenzal</div></div><div class="plato-precio">36,90 €</div></div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Tomahawk (1,200 kg)</div><div class="plato-desc">Origen nacional</div></div><div class="plato-precio">60 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Chuletón 1 kg madurado</div><div class="plato-desc">Madurado nacional</div></div><div class="plato-precio">50 €</div></div>
+      </div>
+    </div>
+
+    <!-- PARRILLADA EN LA MESA -->
+    <div class="carta-cat reveal">
+      <div class="cat-header">
+        <h3><span>Parrillada</span></h3>
+        <p>La verdadera barbacoa argentina, para compartir</p>
+      </div>
+      <div class="plato-grid">
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Parrillada L'Argent</div><div class="plato-desc">Asado de ternera, vacío, secreto de cerdo, morcilla… · persona adicional 26 €</div></div><div class="plato-precio">52 €</div></div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Parrillada especial</div><div class="plato-desc">Asado de ternera, vacío, secreto de cerdo, morcilla… · persona adicional 29 €</div></div><div class="plato-precio">58 €</div></div>
+      </div>
+    </div>
+
+    <!-- MILANESAS -->
+    <div class="carta-cat reveal">
+      <div class="cat-header">
+        <h3><span>Milanesas</span></h3>
+        <p>A caballo y napolitanas</p>
+      </div>
+      <div class="plato-grid">
+        <div class="plato-sub">A caballo</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Milanesa de ternera</div><div class="plato-desc">Cadera apanada, patatas y huevos fritos</div></div><div class="plato-precio">18,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Milanesa de pollo</div><div class="plato-desc">Pollo apanado, patatas y huevos fritos</div></div><div class="plato-precio">19,50 €</div></div>
+        <div class="plato-sub">Napolitanas</div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Milanesa napolitana de ternera</div><div class="plato-desc">Sofrito de tomate, mozzarella, olivas, pimiento y patatas</div></div><div class="plato-precio">21,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Milanesa napolitana de pollo</div><div class="plato-desc">Sofrito de tomate, mozzarella, olivas, pimiento y patatas</div></div><div class="plato-precio">19,50 €</div></div>
+      </div>
+    </div>
+
+    <!-- PESCADOS -->
+    <div class="carta-cat reveal">
+      <div class="cat-header">
+        <h3><span>Pescados</span></h3>
+        <p>A la plancha</p>
+      </div>
+      <div class="plato-grid">
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Ventresca de merluza a la plancha</div><div class="plato-desc">Con patatas fritas o ensalada</div></div><div class="plato-precio">17,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Lomos de salmón</div><div class="plato-desc">Con champiñón, calabacín, tomate y pimiento</div></div><div class="plato-precio">19,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Dorada a la plancha</div><div class="plato-desc">Con champiñón, calabacín, cebolla y pimiento</div></div><div class="plato-precio">18,90 €</div></div>
+      </div>
+    </div>
+
+        <!-- PIZZA Y PASTAS -->
+    <div class="carta-cat reveal">
+      <div class="cat-header">
+        <h3>Pizza y <span>pastas</span></h3>
+        <p>Pizzas de masa artesanal y pastas caseras</p>
+      </div>
+      <div class="plato-grid">
+        <div class="plato-sub">Pizzas 100% caseras</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Margarita</div><div class="plato-desc">Sofrito de tomate, mozzarella y orégano</div></div><div class="plato-precio">15 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Especial</div><div class="plato-desc">York, olivas, pimiento, tomate y mozzarella</div></div><div class="plato-precio">17,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Napolitana</div><div class="plato-desc">Tomate, mozzarella, rodajas de tomate, perejil y ajo</div></div><div class="plato-precio">19 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Bacon</div><div class="plato-desc">Tomate, mozzarella y bacon tostado</div></div><div class="plato-precio">18,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Cuatro quesos</div><div class="plato-desc">Mozzarella, cheddar, provolone y roquefort</div></div><div class="plato-precio">19,50 €</div></div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">L'Argent</div><div class="plato-desc">Jamón serrano, parmesano, champiñón y mozzarella</div></div><div class="plato-precio">21,90 €</div></div>
+        <div class="plato-sub">Pastas</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Spaghetti a la boloñesa</div></div><div class="plato-precio">14,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Gnocchis a la boloñesa</div></div><div class="plato-precio">13,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tagliatelle carbonara</div></div><div class="plato-precio">14,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Spaghetti marinera</div></div><div class="plato-precio">16,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Raviolis cuatro quesos</div></div><div class="plato-precio">14,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Fetuccini al funghi</div></div><div class="plato-precio">14,50 €</div></div>
+      </div>
+    </div>
+
+    <!-- ENSALADAS -->
+    <div class="carta-cat reveal">
+      <div class="cat-header">
+        <h3><span>Ensaladas</span></h3>
+        <p>Frescas y de temporada</p>
+      </div>
+      <div class="plato-grid">
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Ensalada Giuli</div><div class="plato-desc">Zanahoria, tomate, huevo duro, surimi y maíz dulce</div></div><div class="plato-precio">10,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Ensalada Agus</div><div class="plato-desc">Canónigos, atún, tomate, zanahoria, aceitunas, huevo y maíz</div></div><div class="plato-precio">11,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Ensalada templada</div><div class="plato-desc">Canónigos, tomate, queso de cabra y semillas de girasol tostadas</div></div><div class="plato-precio">12,50 €</div></div>
+      </div>
+    </div>
+
+    <!-- ENTRE PAN -->
+    <div class="carta-cat reveal">
+      <div class="cat-header">
+        <h3>Entre <span>pan</span></h3>
+        <p>Hamburguesas, sándwiches y bien argentino</p>
+      </div>
+      <div class="plato-grid">
+        <div class="plato-sub">Hamburguesas</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Completa</div><div class="plato-desc">York, queso, huevo, lechuga y tomate</div></div><div class="plato-precio">13,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">DB</div><div class="plato-desc">Bacon, queso cheddar y huevo</div></div><div class="plato-precio">15,50 €</div></div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">L'Argent</div><div class="plato-desc">York, queso, huevo, tomate y pepinillos</div></div><div class="plato-precio">15,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Vegana</div><div class="plato-desc">Proteína vegetal, tomate, lechuga y pepinillos</div></div><div class="plato-precio">14,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Goat</div><div class="plato-desc">Bacon, queso de cabra, huevo y cebolla dulce</div></div><div class="plato-precio">16,50 €</div></div>
+        <div class="plato-sub">Sándwiches de solomillo</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Solomillo de pollo</div><div class="plato-desc">York, queso, huevo, lechuga y tomate</div></div><div class="plato-precio">16,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Solomillo de cerdo</div><div class="plato-desc">York, queso, huevo, lechuga y tomate</div></div><div class="plato-precio">17,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Solomillo de ternera</div><div class="plato-desc">York, queso, huevo, lechuga y tomate</div></div><div class="plato-precio">18,90 €</div></div>
+        <div class="plato-sub">Bien argentino y clásicos</div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Choripán</div><div class="plato-desc">Sándwich de chorizo</div></div><div class="plato-precio">9,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Sándwich milanesa completo</div></div><div class="plato-precio">18,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Mixto de jamón york y queso</div></div><div class="plato-precio">5,50 €</div></div>
+      </div>
+    </div>
+
+        <!-- POSTRES Y BOLLERIA -->
+    <div class="carta-cat reveal">
+      <div class="cat-header">
+        <h3>Postres y <span>bollería</span></h3>
+        <p>Dulces caseros y de tradición argentina</p>
+      </div>
+      <div class="plato-grid">
+        <div class="plato-sub">Postres</div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Copa L'Argent</div><div class="plato-desc">Helado de vainilla, Baileys, dulce de leche y nueces</div></div><div class="plato-precio">8,90 €</div></div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Bombón argentino</div><div class="plato-desc">Helado de chocolate con dulce de leche y almendras tostadas</div></div><div class="plato-precio">8,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Copa helada dos sabores</div><div class="plato-desc">Chocolate, fresa, vainilla, turrón, limón o leche merengada</div></div><div class="plato-precio">6,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Flan de huevo con dulce de leche</div></div><div class="plato-precio">4,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Arroz con leche con dulce de leche</div></div><div class="plato-precio">4,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Pancake / crep</div><div class="plato-desc">Dulce de leche y nata · o Nutella y nata</div></div><div class="plato-precio">8,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Brownie o coulant con helado</div><div class="plato-desc">Con una bola de helado</div></div><div class="plato-precio">8,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Chocotorta</div></div><div class="plato-precio">6,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Cheesecake Oreo</div></div><div class="plato-precio">6,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tartas variadas</div><div class="plato-desc">Limón, manzana, arándanos, tiramisú, queso o muerte por chocolate</div></div><div class="plato-precio">6,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Servicio de tarta</div><div class="plato-desc">Si traes tu propia tarta de cumpleaños</div></div><div class="plato-precio">5 €</div></div>
+        <div class="plato-sub">Bollería</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Medialuna</div><div class="plato-desc">Unidad</div></div><div class="plato-precio">3,20 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Medialuna rellena</div><div class="plato-desc">Dulce de leche</div></div><div class="plato-precio">3,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Alfajor</div><div class="plato-desc">Chocolate, pistacho o nuez</div></div><div class="plato-precio">4 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Alfajor de maicena</div></div><div class="plato-precio">4 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Pastafrola</div></div><div class="plato-precio">6 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tarta de coco / dulce de leche</div></div><div class="plato-precio">6,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tarta copitos DDL</div><div class="plato-desc">Dulce de leche y chocolate</div></div><div class="plato-precio">6,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tarta de queso</div></div><div class="plato-precio">6,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tarta muerte por chocolate</div></div><div class="plato-precio">6,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tartín lemon pie</div></div><div class="plato-precio">6,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tartín de arándanos o manzana</div></div><div class="plato-precio">6,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Chocolate con churros</div></div><div class="plato-precio">5,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Sándwich mixto</div></div><div class="plato-precio">5,50 €</div></div>
+      </div>
+    </div>
+
+    <!-- BEBIDAS: CAFÉ -->
+    <div class="carta-cat reveal" data-group="bebidas">
+      <div class="cat-header">
+        <h3><span>Café</span></h3>
+        <p>Café, infusiones y de tradición</p>
+      </div>
+      <div class="plato-grid">
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Café solo</div></div><div class="plato-precio">1,40 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Cortado</div></div><div class="plato-precio">1,60 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Café del tiempo</div></div><div class="plato-precio">1,70 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Café americano</div></div><div class="plato-precio">1,70 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Café con leche</div></div><div class="plato-precio">1,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Cortado del tiempo</div></div><div class="plato-precio">1,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Café con leche del tiempo</div></div><div class="plato-precio">2,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Bombón</div></div><div class="plato-precio">1,90 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Bombón del tiempo</div></div><div class="plato-precio">2,10 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Carajillo Terry</div></div><div class="plato-precio">2,10 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Capuccino</div><div class="plato-desc">Con nata y canela</div></div><div class="plato-precio">3,40 €</div></div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Café irlandés</div><div class="plato-desc">Café con whisky y nata</div></div><div class="plato-precio">4,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Infusiones</div></div><div class="plato-precio">1,80 €</div></div>
+      </div>
+    </div>
+
+    <!-- BEBIDAS: CERVEZAS -->
+    <div class="carta-cat reveal" data-group="bebidas">
+      <div class="cat-header">
+        <h3><span>Cervezas</span></h3>
+        <p>De barril, tercios y artesanas</p>
+      </div>
+      <div class="plato-grid">
+        <div class="plato-sub">De barril (tirador)</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Caña Estrella Galicia</div></div><div class="plato-precio">2,20 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Caña 1906</div></div><div class="plato-precio">2,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Doble Estrella Galicia</div></div><div class="plato-precio">2,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Doble 1906</div></div><div class="plato-precio">3,30 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tanque Estrella Galicia</div></div><div class="plato-precio">5,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tanque 1906</div></div><div class="plato-precio">6,00 €</div></div>
+        <div class="plato-sub">Tercios (33 cl)</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Radler</div></div><div class="plato-precio">3,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Ribera reposada</div></div><div class="plato-precio">4,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Turia</div></div><div class="plato-precio">3,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Estrella Galicia</div></div><div class="plato-precio">3,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Heineken</div></div><div class="plato-precio">3,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Alhambra Verde</div></div><div class="plato-precio">3,30 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Voldham</div></div><div class="plato-precio">3,20 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Águila sin filtrar</div></div><div class="plato-precio">3,40 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Corona</div></div><div class="plato-precio">4,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Quilmes</div></div><div class="plato-precio">4,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">18/70 La Rubia</div></div><div class="plato-precio">3,50 €</div></div>
+        <div class="plato-sub">Sin alcohol</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Heineken 0%</div></div><div class="plato-precio">3,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Estrella Galicia 0%</div></div><div class="plato-precio">3,00 €</div></div>
+        <div class="plato-sub">Especiales y artesanas</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">1906 Red</div></div><div class="plato-precio">4,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tyris Original</div></div><div class="plato-precio">3,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Desperados</div></div><div class="plato-precio">3,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">1906 Estrella Galicia</div></div><div class="plato-precio">4,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tyris IPA</div></div><div class="plato-precio">4,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tyris Märzen sin gluten</div></div><div class="plato-precio">4,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Paulaner (50 cl, trigo)</div></div><div class="plato-precio">4,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Hop 13 Guinness</div></div><div class="plato-precio">4,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Ladrón de Manzanas</div></div><div class="plato-precio">3,20 €</div></div>
+        <div class="plato-sub">Para acompañar</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Papas chips</div></div><div class="plato-precio">2,30 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Cacaos o cacahuetes</div></div><div class="plato-precio">1,20 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Olivas</div></div><div class="plato-precio">2,30 €</div></div>
+      </div>
+    </div>
+
+    <!-- BEBIDAS: VINOS -->
+    <div class="carta-cat reveal" data-group="bebidas">
+      <div class="cat-header">
+        <h3><span>Vinos</span></h3>
+        <p>Blancos, tintos y tintos argentinos</p>
+      </div>
+      <div class="plato-grid">
+        <div class="plato-sub">Blancos, rosados y cavas</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Copa blanco Verdejo</div></div><div class="plato-precio">3,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Copa blanco afrutado</div></div><div class="plato-precio">3,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Copa rosado</div></div><div class="plato-precio">3,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Copa cava</div></div><div class="plato-precio">3,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Copa blanco Bobal</div></div><div class="plato-precio">4,30 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Bornos Verdejo Rueda</div><div class="plato-desc">Botella</div></div><div class="plato-precio">19 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Faustino Rivero Albariño</div><div class="plato-desc">Botella</div></div><div class="plato-precio">24 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Blanc Pescador espumante suave</div><div class="plato-desc">Botella</div></div><div class="plato-precio">18 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Marina espumante afrutado</div><div class="plato-desc">Botella</div></div><div class="plato-precio">19 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Lancers rosado (Portugal)</div><div class="plato-desc">Botella</div></div><div class="plato-precio">18 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Cava Anna Codorníu</div><div class="plato-desc">Botella</div></div><div class="plato-precio">24 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Pasión de Bobal blanco</div><div class="plato-desc">Botella</div></div><div class="plato-precio">24 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Delizias blanco</div><div class="plato-desc">Botella</div></div><div class="plato-precio">19 €</div></div>
+        <div class="plato-sub">Tintos</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Copa tinto Rioja</div></div><div class="plato-precio">3,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Copa tinto Ribera</div></div><div class="plato-precio">4,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Coto Mayor Rioja</div><div class="plato-desc">Botella</div></div><div class="plato-precio">19 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Ramón Bilbao Rioja</div><div class="plato-desc">Botella</div></div><div class="plato-precio">20 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Malacuera Ribera del Duero</div><div class="plato-desc">Botella</div></div><div class="plato-precio">24 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Antaño</div><div class="plato-desc">Botella</div></div><div class="plato-precio">18 €</div></div>
+        <div class="plato-sub">Tintos argentinos</div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Catena Zapata Malbec</div><div class="plato-desc">Botella</div></div><div class="plato-precio">35 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Trumpeter Malbec</div><div class="plato-desc">Botella</div></div><div class="plato-precio">34 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Trapiche Malbec</div><div class="plato-desc">Botella</div></div><div class="plato-precio">30 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Postales del Fin del Mundo</div><div class="plato-desc">Botella</div></div><div class="plato-precio">25 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Séptima</div><div class="plato-desc">Botella</div></div><div class="plato-precio">24 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">El Bar Malbec argentino</div><div class="plato-desc">Botella</div></div><div class="plato-precio">18 €</div></div>
+      </div>
+    </div>
+
+    <!-- BEBIDAS: CÓCTELES -->
+    <div class="carta-cat reveal" data-group="bebidas">
+      <div class="cat-header">
+        <h3><span>Cócteles</span></h3>
+        <p>Coctelería, gin tonics y combinados</p>
+      </div>
+      <div class="plato-grid">
+        <div class="plato-sub">Cócteles</div>
+        <div class="plato destacado"><div class="plato-info"><div class="plato-nombre">Agua de Valencia</div></div><div class="plato-precio">9,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Copón de sangría</div><div class="plato-desc">Vino, ron, refresco y fruta</div></div><div class="plato-precio">7,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Fernet cola</div></div><div class="plato-precio">7,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Aperol Spritz</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Piña colada</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Margarita</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Mojito</div><div class="plato-desc">Según temporada</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Daiquiri de fresa</div><div class="plato-desc">Según temporada</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Negroni</div></div><div class="plato-precio">9,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Bloody Mary</div></div><div class="plato-precio">9,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tinto de verano casero</div></div><div class="plato-precio">4,50 €</div></div>
+        <div class="plato-sub">Gin tonics</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Beefeater</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Larios</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Masters</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Gordon's</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Bombay</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Seagram's</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Puerto de Indias</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Puerto de Indias Strawberry</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Larios Rosé</div></div><div class="plato-precio">8,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Tanqueray</div></div><div class="plato-precio">9,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Bombay Sapphire</div></div><div class="plato-precio">9,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Mombasa</div></div><div class="plato-precio">9,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Bulldog</div></div><div class="plato-precio">9,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Bombay frutos rojos</div></div><div class="plato-precio">9,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Nordés</div></div><div class="plato-precio">9,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Mare</div></div><div class="plato-precio">9,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Hendrick's</div></div><div class="plato-precio">9,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Martin Miller's</div></div><div class="plato-precio">9,50 €</div></div>
+        <div class="plato-sub">Combinados</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Absolut (vodka)</div></div><div class="plato-precio">9,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Smirnoff (vodka)</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Havana Club (ron)</div></div><div class="plato-precio">9,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Cacique (ron)</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Brugal (ron)</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Barceló (ron)</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Negrita (ron)</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato-sub">Whisky y scotch</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Cutty Sark</div></div><div class="plato-precio">6,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">J&amp;B</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">J. Walker Red Label</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Jack Daniel's</div></div><div class="plato-precio">8,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Glenfiddich</div></div><div class="plato-precio">9,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Ballantine's</div></div><div class="plato-precio">9,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Chivas Regal</div></div><div class="plato-precio">9,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">J. Walker Black Label</div></div><div class="plato-precio">9,00 €</div></div>
+      </div>
+    </div>
+
+    <!-- BEBIDAS: VERMOUTH -->
+    <div class="carta-cat reveal" data-group="bebidas">
+      <div class="cat-header">
+        <h3><span>Vermouth</span></h3>
+        <p>El aperitivo de siempre</p>
+      </div>
+      <div class="plato-grid">
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Izaguirre rojo</div></div><div class="plato-precio">3,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Izaguirre blanco</div></div><div class="plato-precio">3,80 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Martini rojo</div></div><div class="plato-precio">4,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Martini blanco</div></div><div class="plato-precio">4,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Campari</div></div><div class="plato-precio">5,00 €</div></div>
+      </div>
+    </div>
+
+    <!-- BEBIDAS: REFRESCOS -->
+    <div class="carta-cat reveal" data-group="bebidas">
+      <div class="cat-header">
+        <h3><span>Refrescos</span></h3>
+        <p>Refrescos, aguas, zumos y batidos</p>
+      </div>
+      <div class="plato-grid">
+        <div class="plato-sub">Refrescos</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Coca-Cola</div></div><div class="plato-precio">2,70 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Coca-Cola Zero</div></div><div class="plato-precio">2,70 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Coca-Cola Zero Zero</div></div><div class="plato-precio">2,70 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Fanta naranja</div></div><div class="plato-precio">2,70 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Fanta limón</div></div><div class="plato-precio">2,70 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Nestea</div></div><div class="plato-precio">2,70 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Aquarius limón</div></div><div class="plato-precio">2,70 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Aquarius naranja</div></div><div class="plato-precio">2,70 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Sprite</div></div><div class="plato-precio">2,70 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Trina naranja</div></div><div class="plato-precio">2,70 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Trina limón</div></div><div class="plato-precio">2,70 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Schweppes tónica</div></div><div class="plato-precio">2,70 €</div></div>
+        <div class="plato-sub">Aguas y zumos</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Agua Cabreiroa 500 ml</div></div><div class="plato-precio">2,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Agua con gas Perrier</div></div><div class="plato-precio">3,00 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Zumo de naranja</div></div><div class="plato-precio">3,50 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Zumo de piña</div></div><div class="plato-precio">2,60 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Zumo de melocotón</div></div><div class="plato-precio">2,60 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Zumo de tomate</div></div><div class="plato-precio">2,60 €</div></div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Zumo de pulpa de frutas Buzco</div><div class="plato-desc">Limón, fresa, frutos del bosque, mango o pomelo rosado</div></div><div class="plato-precio">3,90 €</div></div>
+        <div class="plato-sub">Batidos</div>
+        <div class="plato"><div class="plato-info"><div class="plato-nombre">Batido de banana o fresa con leche</div></div><div class="plato-precio">4,80 €</div></div>
+      </div>
+    </div>
+
+    <div class="carta-nota reveal" data-i18n-html="menu.note">Pan en porción 1,50 € · Agregado de salsas (picante, barbacoa, chimichurri, alioli, mayonesa) 1,50 €. Disponemos de información sobre alérgenos e intolerancias: pregunta a nuestro personal. Carta también disponible en nuestra <a href="https://carta.powerup.menu/largent" target="_blank" rel="noopener">carta digital</a>.</div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section class="galeria" id="galeria">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="section-eyebrow" data-i18n="gal.eyebrow">Galería</span>
+      <h2 data-i18n-html="gal.title">De la <em>parrilla</em> a la mesa</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="gal-grid stagger reveal">
+      <div class="gal-item gal-1 tall" data-i18n-label="gal.label1" data-label="Parrillada para compartir" style="--i:0"></div>
+      <div class="gal-item gal-2" data-i18n-label="gal.label2" data-label="Patatas a lo pobre" style="--i:1"></div>
+      <div class="gal-item gal-3" data-i18n-label="gal.label3" data-label="Carne a la brasa" style="--i:2"></div>
+      <div class="gal-item gal-4 tall" data-i18n-label="gal.label4" data-label="Pulpo a la brasa" style="--i:3"></div>
+      <div class="gal-item gal-5" data-i18n-label="gal.label5" data-label="Entra&ntilde;a con patatas" style="--i:4"></div>
+      <div class="gal-item gal-6" data-i18n-label="gal.label6" data-label="Cortes en la parrilla" style="--i:5"></div>
+      <div class="gal-item gal-7" data-i18n-label="gal.label7" data-label="Nuestra terraza" style="--i:6"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div class="container">
+    <div class="contacto-grid">
+      <div class="contacto-text reveal reveal-left">
+        <span class="section-eyebrow" data-i18n="book.eyebrow">Reservas</span>
+        <h2 data-i18n-html="book.title">Te guardamos <em>la mesa</em></h2>
+        <p data-i18n="book.text">Reserva tu mesa llamándonos directamente al restaurante. Para grupos y eventos, contáctanos por teléfono y te ayudamos a organizarlo.</p>
+        <span class="tel-label" data-i18n="book.callNow">Llama ahora</span>
+        <a href="tel:+34681674818" class="tel-grande">681 67 48 18</a>
+        <br>
+        <a href="https://carta.powerup.menu/largent" target="_blank" rel="noopener" class="reserva-online" data-i18n="book.online">Ver carta digital →</a>
+      </div>
+      <div class="contacto-card reveal reveal-right">
+        <div class="item">
+          <strong data-i18n="book.address">Dirección</strong>
+          <span>Av. del Regne de València, 53<br>L'Eixample · 46005 València</span>
+        </div>
+        <div class="item">
+          <strong data-i18n="book.phone">Teléfono</strong>
+          <span><a href="tel:+34681674818">681 67 48 18</a> &middot; <a href="tel:+34963908084">963 908 084</a></span>
+        </div>
+        <div class="item">
+          <strong data-i18n="book.map">Cómo llegar</strong>
+          <a href="https://www.google.com/maps/search/?api=1&query=L%27Argent+Restaurante+Argentino+Av.+del+Regne+de+Valencia+53+Valencia" target="_blank" rel="noopener">Google Maps →</a>
+        </div>
+        <div class="item">
+          <strong data-i18n="book.insta">S&iacute;guenos</strong>
+          <a href="https://www.instagram.com/largent.restauranteargentino/" target="_blank" rel="noopener">@largent.restauranteargentino</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">
+    <img src="assets/largent-logo-v2.png" class="logo-img" alt="L'Argent">
+  </div>
+  <ul class="footer-links">
+    <li><a href="#hero" data-i18n="nav.home">Inicio</a></li>
+    <li><a href="#galeria" data-i18n="nav.gallery">Galer&iacute;a</a></li>
+    <li><a href="#carta" data-i18n="nav.menu">Carta</a></li>
+    <li><a href="#contacto" data-i18n="nav.book">Reservas</a></li>
+  </ul>
+  <div class="social-icons">
+    <a href="https://www.instagram.com/largent.restauranteargentino/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+    <a href="tel:+34681674818" aria-label="Teléfono">☎</a>
+    <a href="https://carta.powerup.menu/largent" target="_blank" rel="noopener" aria-label="Carta digital">✦</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=L%27Argent+Restaurante+Argentino+Av.+del+Regne+de+Valencia+53+Valencia" target="_blank" rel="noopener" aria-label="Mapa">⌖</a>
+  </div>
+  <p class="copy">© <span id="year"></span> <span data-i18n="footer.copy">L'Argent — Restaurante & Bar Argentino · València.</span></p>
+  <p class="credit" data-i18n="footer.credit">Diseño web por Wertical Studio</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
+
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => { burger.classList.toggle('open'); navLinks.classList.toggle('open'); });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => { burger.classList.remove('open'); navLinks.classList.remove('open'); });
+  });
+
+  // Counters
+  function animateCount(el) {
+    const target = parseFloat(el.dataset.count);
+    const decimals = (el.dataset.count.indexOf('.') !== -1) ? 1 : 0;
+    const dur = 1600; const start = performance.now();
+    function step(now) {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const val = target * eased;
+      el.textContent = decimals ? val.toFixed(1).replace('.', ',') : Math.floor(val).toLocaleString('es-ES');
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = decimals ? target.toFixed(1).replace('.', ',') : target.toLocaleString('es-ES');
+    }
+    requestAnimationFrame(step);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        if (entry.target.classList.contains('stagger')) {
+          entry.target.querySelectorAll('*').forEach((el, i) => { el.style.transitionDelay = (i * 100) + 'ms'; });
+        }
+        entry.target.querySelectorAll('[data-count]').forEach(el => {
+          if (!el.dataset.done) { el.dataset.done = '1'; animateCount(el); }
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Parallax hero zoom
+  const heroBg = document.getElementById('heroBg');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (heroBg && y < window.innerHeight) {
+      heroBg.style.transform = `scale(${1.1 + y * 0.0002}) translateY(${y * 0.15}px)`;
+    }
+  }, { passive: true });
+
+  // Parallax desc image
+  const parallaxEl = document.querySelector('[data-parallax]');
+  if (parallaxEl) {
+    window.addEventListener('scroll', () => {
+      const rect = parallaxEl.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const offset = (rect.top - window.innerHeight / 2) * 0.08;
+        parallaxEl.style.backgroundPosition = `center ${50 + offset}%`;
+      }
+    }, { passive: true });
+  }
+
+  const hoy = new Date().getDay();
+  const liHoy = document.querySelector(`[data-dia="${hoy}"]`);
+  if (liHoy) liHoy.classList.add('hoy');
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ============ ESTADO ABIERTO / CERRADO ============
+  // Lun cerrado · Mar-Sáb 13:00-23:00 · Dom 13:00-16:00
+  // 13:00=780, 23:00=1380, 16:00=960
+  const schedule = {
+    0: [[780, 960]],     // Domingo
+    1: [],               // Lunes cerrado
+    2: [[780, 1380]],    // Martes
+    3: [[780, 1380]],    // Miércoles
+    4: [[780, 1380]],    // Jueves
+    5: [[780, 1380]],    // Viernes
+    6: [[780, 1380]]     // Sábado
+  };
+  function fmtMin(m) { const h = Math.floor(m / 60), mm = m % 60; return h.toString().padStart(2,'0') + ':' + mm.toString().padStart(2,'0'); }
+  function getStatus() {
+    const now = new Date(); const day = now.getDay(); const min = now.getHours() * 60 + now.getMinutes();
+    const slots = schedule[day] || [];
+    for (const [s, e] of slots) { if (min >= s && min < e) return { open: true, until: e }; }
+    for (const [s] of slots) { if (min < s) return { open: false, nextDay: day, nextTime: s, sameDay: true }; }
+    for (let i = 1; i <= 7; i++) { const d = (day + i) % 7; if (schedule[d].length) return { open: false, nextDay: d, nextTime: schedule[d][0][0], sameDay: false }; }
+    return { open: false };
+  }
+
+  // ============ i18n ============
+  const i18n = {
+    es: {
+      'nav.home': 'Inicio', 'nav.hours': 'Horarios', 'nav.menu': 'Carta', 'nav.gallery': 'Galería', 'nav.book': 'Reservas',
+      'hero.eyebrow': 'Parrilla Argentina · L\'Eixample · València',
+      'hero.sub': 'Restaurante <span class="sep">&amp;</span> Bar Argentino',
+      'hero.tagline': 'Auténtica parrilla argentina en el corazón de València. Carne a la brasa, empanadas caseras y el fuego como protagonista.',
+      'hero.cta1': 'Reservar mesa', 'hero.cta2': 'Ver la carta', 'hero.scroll': 'Desliza',
+      'status.open': 'Abierto ahora', 'status.openUntil': 'Abierto hasta las {t}',
+      'status.closed': 'Cerrado', 'status.opensAt': 'Abre hoy a las {t}', 'status.opensOn': 'Abre el {d} a las {t}',
+      'about.eyebrow': 'Sobre nosotros',
+      'about.title': 'El sabor de la <em>parrilla</em> argentina',
+      'about.p1': 'L\'Argent nace en el Eixample valenciano con una idea clara: traer la verdadera parrilla argentina a València. Carne de calidad, fuego lento y el ritual del asado como lo manda la tradición.',
+      'about.p2': 'Nuestra brasa es el corazón de la casa: entraña, mollejas, provoleta y cortes seleccionados que pasan por el fuego para sacar lo mejor de cada pieza. Y junto a ellos, las empanadas caseras, masa fina y relleno generoso, como en Buenos Aires.',
+      'about.p3': 'Un ambiente cálido y cercano, servicio atento y la sobremesa argentina que invita a quedarse. Pet-friendly y pensado para compartir mesa, charla y buen vino.',
+      'stats.rating': 'Valoración · Google', 'stats.reviews': 'Reseñas de clientes', 'stats.avg': 'Precio medio · persona',
+      'hours.eyebrow': 'Encuéntranos', 'hours.title': 'Ubicación y <em>horarios</em>',
+      'hours.where': 'Dónde estamos', 'hours.schedule': 'Horario', 'hours.directions': 'Cómo llegar →',
+      'day.mon': 'Lunes', 'day.tue': 'Martes', 'day.wed': 'Miércoles', 'day.thu': 'Jueves',
+      'day.fri': 'Viernes', 'day.sat': 'Sábado', 'day.sun': 'Domingo', 'day.closed': 'Cerrado',
+      'gal.eyebrow': 'Galería', 'gal.title': 'De la <em>parrilla</em> a la mesa',
+      'gal.label1': 'Parrillada para compartir', 'gal.label2': 'Patatas a lo pobre', 'gal.label3': 'Carne a la brasa',
+      'gal.label4': 'Pulpo a la brasa', 'gal.label5': 'Entraña con patatas', 'gal.label6': 'Cortes en la parrilla', 'gal.label7': 'Nuestra terraza',
+      'menu.eyebrow': 'Para disfrutar', 'menu.title': 'Nuestra <em>carta</em>',
+      'menu.note': 'Carta orientativa. Consulta los platos y precios actualizados en nuestra <a href="https://carta.powerup.menu/largent" target="_blank" rel="noopener">carta digital</a>.',
+      'cat.emp.title': 'Empanadas <span>caseras</span>', 'cat.emp.sub': 'Masa fina, horneadas al momento',
+      'cat.start.title': 'Para <span>empezar</span>', 'cat.start.sub': 'Entrantes para compartir',
+      'cat.grill.title': 'La <span>parrilla</span>', 'cat.grill.sub': 'Carne a la brasa, como en Argentina',
+      'book.eyebrow': 'Reservas', 'book.title': 'Te guardamos <em>la mesa</em>',
+      'book.text': 'Reserva tu mesa llamándonos directamente al restaurante. Para grupos y eventos, contáctanos por teléfono y te ayudamos a organizarlo.',
+      'book.callNow': 'Llama ahora', 'book.address': 'Dirección', 'book.phone': 'Teléfono', 'book.map': 'Cómo llegar', 'book.insta': 'Síguenos',
+      'book.online': 'Ver carta digital →',
+      'footer.copy': 'L\'Argent — Restaurante & Bar Argentino · València.', 'footer.credit': 'Diseño web por Wertical Studio'
+    },
+    en: {
+      'nav.home': 'Home', 'nav.hours': 'Hours', 'nav.menu': 'Menu', 'nav.gallery': 'Gallery', 'nav.book': 'Book',
+      'hero.eyebrow': 'Argentine Grill · L\'Eixample · València',
+      'hero.sub': 'Argentine Restaurant <span class="sep">&amp;</span> Bar',
+      'hero.tagline': 'Authentic Argentine grill in the heart of València. Charcoal-grilled meat, homemade empanadas and fire as the star.',
+      'hero.cta1': 'Book a table', 'hero.cta2': 'View menu', 'hero.scroll': 'Scroll',
+      'status.open': 'Open now', 'status.openUntil': 'Open until {t}',
+      'status.closed': 'Closed', 'status.opensAt': 'Opens today at {t}', 'status.opensOn': 'Opens {d} at {t}',
+      'about.eyebrow': 'About us',
+      'about.title': 'The taste of the Argentine <em>grill</em>',
+      'about.p1': 'L\'Argent was born in València\'s Eixample with a clear idea: to bring the true Argentine grill to the city. Quality meat, slow fire and the ritual of the asado just as tradition demands.',
+      'about.p2': 'Our grill is the heart of the house: skirt steak, sweetbreads, provoleta and selected cuts that meet the fire to bring out the best in every piece. Alongside them, homemade empanadas — thin dough and generous filling, just like in Buenos Aires.',
+      'about.p3': 'A warm, welcoming atmosphere, attentive service and the Argentine after-meal that invites you to stay. Pet-friendly and made for sharing the table, good conversation and good wine.',
+      'stats.rating': 'Rating · Google', 'stats.reviews': 'Customer reviews', 'stats.avg': 'Average price · per person',
+      'hours.eyebrow': 'Find us', 'hours.title': 'Location &amp; <em>hours</em>',
+      'hours.where': 'Where we are', 'hours.schedule': 'Opening hours', 'hours.directions': 'Get directions →',
+      'day.mon': 'Monday', 'day.tue': 'Tuesday', 'day.wed': 'Wednesday', 'day.thu': 'Thursday',
+      'day.fri': 'Friday', 'day.sat': 'Saturday', 'day.sun': 'Sunday', 'day.closed': 'Closed',
+      'gal.eyebrow': 'Gallery', 'gal.title': 'From the <em>grill</em> to the table',
+      'gal.label1': 'Mixed grill to share', 'gal.label2': 'Loaded fries', 'gal.label3': 'Grilled meat',
+      'gal.label4': 'Grilled octopus', 'gal.label5': 'Skirt steak & fries', 'gal.label6': 'On the grill', 'gal.label7': 'Our terrace',
+      'menu.eyebrow': 'To enjoy', 'menu.title': 'Our <em>menu</em>',
+      'menu.note': 'Menu is indicative. Check current dishes and prices on our <a href="https://carta.powerup.menu/largent" target="_blank" rel="noopener">digital menu</a>.',
+      'cat.emp.title': 'Homemade <span>empanadas</span>', 'cat.emp.sub': 'Thin dough, baked to order',
+      'cat.start.title': 'To <span>start</span>', 'cat.start.sub': 'Starters to share',
+      'cat.grill.title': 'The <span>grill</span>', 'cat.grill.sub': 'Charcoal-grilled meat, just like in Argentina',
+      'book.eyebrow': 'Reservations', 'book.title': 'We\'ll save <em>your table</em>',
+      'book.text': 'Book your table by calling the restaurant directly. For groups and events, get in touch by phone and we\'ll help you arrange it.',
+      'book.callNow': 'Call now', 'book.address': 'Address', 'book.phone': 'Phone', 'book.map': 'Get directions', 'book.insta': 'Follow us',
+      'book.online': 'View digital menu →',
+      'footer.copy': 'L\'Argent — Argentine Restaurant & Bar · València.', 'footer.credit': 'Web design by Wertical Studio'
+    }
+  };
+
+  const dishes = {
+    'emp-carne': { es: ['Empanada de carne', 'Carne cortada a cuchillo, huevo y aceituna · la clásica argentina'], en: ['Beef empanada', 'Knife-cut beef, egg and olive · the Argentine classic'] },
+    'emp-pollo': { es: ['Empanada de pollo', 'Pollo desmenuzado y verduras salteadas'], en: ['Chicken empanada', 'Shredded chicken and sautéed vegetables'] },
+    'emp-jyq': { es: ['Empanada de jamón y queso', 'Jamón cocido y queso fundido'], en: ['Ham & cheese empanada', 'Cooked ham and melted cheese'] },
+    'emp-humita': { es: ['Empanada de humita', 'Crema suave de maíz · opción vegetariana'], en: ['Humita empanada', 'Soft sweet-corn cream · vegetarian option'] },
+    'provoleta': { es: ['Provoleta', 'Provolone a la parrilla con orégano y aceite de oliva'], en: ['Provoleta', 'Grilled provolone with oregano and olive oil'] },
+    'calamares': { es: ['Calamares fritos', 'Rebozado crujiente y limón'], en: ['Fried calamari', 'Crispy batter and lemon'] },
+    'papas': { es: ['Patatas fritas caseras', 'Cortadas y fritas en casa'], en: ['Homemade fries', 'Cut and fried in house'] },
+    'alitas': { es: ['Alitas de pollo', 'Marinadas y a la brasa'], en: ['Chicken wings', 'Marinated and charcoal-grilled'] },
+    'parrillada': { es: ['Parrillada para dos', 'Selección de cortes y achuras a la brasa para compartir'], en: ['Mixed grill for two', 'A selection of grilled cuts and offal to share'] },
+    'entrana': { es: ['Entraña a la parrilla', 'Corte argentino por excelencia, jugoso y en su punto'], en: ['Grilled skirt steak', 'The quintessential Argentine cut, juicy and on point'] },
+    'mollejas': { es: ['Mollejas a la brasa', 'Doradas al fuego, con limón'], en: ['Grilled sweetbreads', 'Golden over the fire, with lemon'] },
+    'chinchulines': { es: ['Chinchulines', 'Achura tradicional a la parrilla'], en: ['Chinchulines', 'Traditional grilled offal'] },
+    'costillas': { es: ['Costillas a la barbacoa', 'Cocción lenta, melosas y con salsa de la casa'], en: ['BBQ ribs', 'Slow-cooked, tender and with house sauce'] },
+    'bife': { es: ['Bife / corte del día', 'Pregunta por el corte recomendado de la parrilla'], en: ['Steak / cut of the day', 'Ask for the recommended cut from the grill'] }
+  };
+
+  function updateStatus(lang) {
+    const indicator = document.getElementById('statusIndicator'); if (!indicator) return;
+    const txt = indicator.querySelector('.status-text'); const status = getStatus(); const t = i18n[lang];
+    indicator.classList.remove('status-open', 'status-closed');
+    if (status.open) {
+      indicator.classList.add('status-open');
+      txt.textContent = t['status.openUntil'].replace('{t}', fmtMin(status.until));
+    } else {
+      indicator.classList.add('status-closed');
+      if (status.nextTime !== undefined) {
+        if (status.sameDay) {
+          txt.textContent = t['status.opensAt'].replace('{t}', fmtMin(status.nextTime));
+        } else {
+          const dayKeys = ['day.sun','day.mon','day.tue','day.wed','day.thu','day.fri','day.sat'];
+          txt.textContent = t['status.opensOn'].replace('{d}', t[dayKeys[status.nextDay]].toLowerCase()).replace('{t}', fmtMin(status.nextTime));
+        }
+      } else { txt.textContent = t['status.closed']; }
+    }
+  }
+
+  function applyLang(lang) {
+    const dict = i18n[lang];
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => { const v = dict[el.dataset.i18n]; if (v) el.textContent = v; });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => { const v = dict[el.dataset.i18nHtml]; if (v) el.innerHTML = v; });
+    document.querySelectorAll('[data-i18n-label]').forEach(el => { const v = dict[el.dataset.i18nLabel]; if (v) el.setAttribute('data-label', v); });
+    document.querySelectorAll('[data-dish]').forEach(el => {
+      const d = dishes[el.dataset.dish]; if (!d) return;
+      const [nombre, desc] = d[lang];
+      const n = el.querySelector('.plato-nombre'); const ds = el.querySelector('.plato-desc');
+      if (n) n.textContent = nombre; if (ds) ds.textContent = desc;
+    });
+    updateStatus(lang);
+    document.querySelectorAll('.lang-opt').forEach(o => { o.classList.toggle('active', o.dataset.lang === lang); });
+    try { localStorage.setItem('largent-lang', lang); } catch (e) {}
+  }
+
+  const savedLang = (() => { try { return localStorage.getItem('largent-lang'); } catch (e) { return null; } })();
+  const initLang = savedLang || (navigator.language && navigator.language.startsWith('en') ? 'en' : 'es');
+  applyLang(initLang);
+  setInterval(() => updateStatus(document.documentElement.lang || 'es'), 60000);
+  document.getElementById('langSwitch').addEventListener('click', () => {
+    const cur = document.documentElement.lang || 'es';
+    applyLang(cur === 'es' ? 'en' : 'es');
+  });
+  (function(){
+    var groupsWrap = document.getElementById('cartaGroups');
+    var tabsWrap = document.getElementById('cartaTabs');
+    var cats = Array.prototype.slice.call(document.querySelectorAll('.carta-cat'));
+    if (!tabsWrap || !cats.length) return;
+    var isEn = (document.documentElement.lang === 'en');
+    var groupDefs = [{ id: 'comida', label: isEn ? 'Food' : 'Comida' }, { id: 'bebidas', label: isEn ? 'Drinks' : 'Bebidas' }];
+    cats.forEach(function(cat){ cat.setAttribute('data-group', cat.getAttribute('data-group') || 'comida'); });
+    function mkBtn(cls, label, active){
+      var b = document.createElement('button');
+      b.className = cls + (active ? ' active' : '');
+      b.textContent = label;
+      return b;
+    }
+    function buildTabs(group){
+      tabsWrap.innerHTML = '';
+      var groupCats = cats.filter(function(x){ return x.getAttribute('data-group') === group; });
+      var localTabs = [];
+      groupCats.forEach(function(cat, i){
+        var id = group + '-' + i;
+        cat.setAttribute('data-cat', id);
+        var h = cat.querySelector('.cat-header h3');
+        var label = h ? h.textContent.trim() : ('' + (i + 1));
+        var t = mkBtn('carta-tab', label, i === 0);
+        t.setAttribute('data-target', id);
+        tabsWrap.appendChild(t);
+        localTabs.push(t);
+        cat.style.display = (i === 0) ? '' : 'none';
+        if (i === 0) cat.classList.add('visible');
+      });
+      tabsWrap.onclick = function(e){
+        var t = e.target.closest('.carta-tab'); if (!t) return;
+        localTabs.forEach(function(x){ x.classList.remove('active'); });
+        t.classList.add('active');
+        var target = t.getAttribute('data-target');
+        groupCats.forEach(function(cat){
+          var show = (cat.getAttribute('data-cat') === target);
+          cat.style.display = show ? '' : 'none';
+          if (show) cat.classList.add('visible');
+        });
+      };
+    }
+    var groupBtns = [];
+    function selectGroup(group){
+      groupBtns.forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-group') === group); });
+      cats.forEach(function(cat){ if (cat.getAttribute('data-group') !== group) { cat.style.display = 'none'; } });
+      buildTabs(group);
+    }
+    if (groupsWrap){
+      groupDefs.forEach(function(gd, i){
+        var b = mkBtn('carta-group', gd.label, i === 0);
+        b.setAttribute('data-group', gd.id);
+        groupsWrap.appendChild(b);
+        groupBtns.push(b);
+      });
+      groupsWrap.onclick = function(e){
+        var b = e.target.closest('.carta-group'); if (!b) return;
+        selectGroup(b.getAttribute('data-group'));
+      };
+    }
+    selectGroup('comida');
+  })();
+</script>
+
+</body>
+</html>
