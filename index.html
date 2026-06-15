@@ -746,6 +746,13 @@
   .hero { background: #4a8ec9 !important; }
   .hero-bg { background: none !important; transform: none !important; opacity: 0.9; }
   .hero::before { background: radial-gradient(circle at 50% 14%, rgba(246,181,13,0.42), rgba(246,181,13,0) 30%), linear-gradient(180deg, rgba(40,84,140,0.66) 0%, rgba(30,66,112,0.70) 45%, rgba(15,38,66,0.86) 100%) !important; }
+  @media (max-width: 600px) {
+    .carta-tabs { display: flex !important; flex-wrap: nowrap !important; overflow-x: auto !important; overflow-y: hidden; -webkit-overflow-scrolling: touch; justify-content: flex-start !important; max-width: 100%; margin-left: 0; margin-right: 0; padding: 0 0 0.6rem 0; scroll-snap-type: x proximity; }
+    .carta-tabs::-webkit-scrollbar { height: 4px; }
+    .carta-tabs::-webkit-scrollbar-thumb { background: rgba(31,111,178,0.45); border-radius: 4px; }
+    .carta-tab { flex: 0 0 auto !important; white-space: nowrap; scroll-snap-align: start; }
+    .carta-groups { flex-wrap: wrap; }
+  }
 </style>
 </head>
 <body>
