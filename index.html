@@ -758,6 +758,11 @@
     .nav-links a { color: #ffffff !important; font-size: 1.05rem; }
     .nav-links a:hover { color: var(--sol) !important; }
   }
+  .float-status { position: fixed; left: 16px; bottom: 16px; top: auto; margin: 0; z-index: 950; animation: none; opacity: 1; color: #ffffff; background: rgba(22,50,78,0.94); border: 1px solid rgba(255,255,255,0.16); box-shadow: 0 6px 22px rgba(0,0,0,0.22); padding: 0.5rem 1rem; }
+  .wa-float { position: fixed; right: 16px; bottom: 16px; width: 56px; height: 56px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 22px rgba(0,0,0,0.28); z-index: 950; transition: transform .25s ease; }
+  .wa-float:hover { transform: scale(1.08); }
+  .wa-float svg { width: 32px; height: 32px; fill: #ffffff; }
+  @media (max-width: 600px) { .float-status { left: 10px; bottom: 10px; padding: 0.4rem 0.8rem; font-size: 0.72rem; } .wa-float { right: 12px; bottom: 12px; width: 50px; height: 50px; } .wa-float svg { width: 28px; height: 28px; } }
 </style>
 </head>
 <body>
@@ -789,10 +794,7 @@
     <h1>L<span class="apos">'</span>ARGENT</h1>
     <p class="hero-sub" data-i18n-html="hero.sub">Restaurante <span class="sep">&amp;</span> Bar Argentino</p>
     <p class="hero-tagline" data-i18n="hero.tagline">Auténtica parrilla argentina en el corazón de València. Carne a la brasa, empanadas caseras y el fuego como protagonista.</p>
-    <div class="status-indicator" id="statusIndicator">
-      <span class="status-dot"></span>
-      <span class="status-text" data-i18n-dyn="status">···</span>
-    </div>
+    
     <div class="hero-buttons">
       <a href="tel:+34681674818" class="btn btn-primary" data-i18n="hero.cta1">Reservar mesa</a>
       <a href="#carta" class="btn btn-ghost" data-i18n="hero.cta2">Ver la carta</a>
@@ -1526,23 +1528,20 @@
   };
 
   function updateStatus(lang) {
-    const indicator = document.getElementById('statusIndicator'); if (!indicator) return;
-    const txt = indicator.querySelector('.status-text'); const status = getStatus(); const t = i18n[lang];
-    indicator.classList.remove('status-open', 'status-closed');
-    if (status.open) {
-      indicator.classList.add('status-open');
-      txt.textContent = t['status.openUntil'].replace('{t}', fmtMin(status.until));
-    } else {
-      indicator.classList.add('status-closed');
+    const status = getStatus(); const t = i18n[lang];
+    let cls, txt;
+    if (status.open) { cls = 'status-open'; txt = t['status.openUntil'].replace('{t}', fmtMin(status.until)); }
+    else {
+      cls = 'status-closed';
       if (status.nextTime !== undefined) {
-        if (status.sameDay) {
-          txt.textContent = t['status.opensAt'].replace('{t}', fmtMin(status.nextTime));
-        } else {
-          const dayKeys = ['day.sun','day.mon','day.tue','day.wed','day.thu','day.fri','day.sat'];
-          txt.textContent = t['status.opensOn'].replace('{d}', t[dayKeys[status.nextDay]].toLowerCase()).replace('{t}', fmtMin(status.nextTime));
-        }
-      } else { txt.textContent = t['status.closed']; }
+        if (status.sameDay) { txt = t['status.opensAt'].replace('{t}', fmtMin(status.nextTime)); }
+        else { const dk = ['day.sun','day.mon','day.tue','day.wed','day.thu','day.fri','day.sat']; txt = t['status.opensOn'].replace('{d}', t[dk[status.nextDay]].toLowerCase()).replace('{t}', fmtMin(status.nextTime)); }
+      } else { txt = t['status.closed']; }
     }
+    document.querySelectorAll('.status-indicator').forEach(function(ind){
+      ind.classList.remove('status-open','status-closed'); ind.classList.add(cls);
+      const s = ind.querySelector('.status-text'); if (s) s.textContent = txt;
+    });
   }
 
   function applyLang(lang) {
@@ -1634,5 +1633,7 @@
   })();
 </script>
 
+<div class="status-indicator float-status" id="statusFloat"><span class="status-dot"></span><span class="status-text">...</span></div>
+<a class="wa-float" href="https://wa.me/34681674818" target="_blank" rel="noopener" aria-label="WhatsApp 681 67 48 18"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.004c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01zM12.04 20.15h-.003a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.23-.17-.48-.29z"></path></svg></a>
 </body>
 </html>
